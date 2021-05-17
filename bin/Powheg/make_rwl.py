@@ -99,7 +99,7 @@ elif int(is5FlavorScheme) == 1:
             # weight id, LHAPDF id, name, replicas to be written
             "PDF_variation1 , hessian" :
             [
-              [3200, 325300, 'NNPDF31_nnlo_as_0118_mc_hessian_pdfas', 1],
+              [3200, 325300, 'NNPDF31_nnlo_as_0118_mc_hessian_pdfas', 103],
               [5000, 13000, 'CT14nnlo', 1],
             ],          
           }
