@@ -18,7 +18,7 @@ QUEUE = ''
 
 
 #POWHEG_SOURCE = "powhegboxV2_rev3728_date20200429.tar.gz"
-POWHEG_SOURCE = "powhegboxV2_rev3828_date20210215.tar.gz"
+POWHEG_SOURCE = "powhegboxV2_rev3828_testLQ.tar.gz"
 POWHEGRES_SOURCE = "powhegboxRES_rev3748_date20200615.tar.gz"
 
 rootfolder = os.getcwd()
@@ -876,8 +876,7 @@ if __name__ == "__main__":
 
         if QUEUE == 'none':
             print 'Direct running in one shot... \n'
-            os.system('bash '+scriptName+' >& '+
-                      scriptName.split('.sh')[0]+'.log &')
+            os.system('bash '+scriptName)
         else:
             print 'Submitting to condor queues  \n'
             condorfile = prepareCondorScript(tagName, '', '.', QUEUE, runInBatchDir=True)
