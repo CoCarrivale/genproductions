@@ -1,4 +1,4 @@
-B# Line by line instructions for the POWHEG tutorial
+# Line by line instructions for the POWHEG tutorial
 
 BEFORE LISTENING TO PRESENTATIONS
 
