@@ -15,6 +15,7 @@ eval `scram runtime -csh`  (in bash: -sh)
 ```
 
 Download the "genproductions" package, which is a generic container for CMS MC-generator scripts and configuration cards. 
+NOTICE THE SPECIAL GIT COMMANDS, which avoid wasting a lot of time to download the whole package.
 
 ```
 git clone --single-branch --depth=1 --no-checkout -b tutorial-24-02-19 git@github.com:covarell/genproductions.git
