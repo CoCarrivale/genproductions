@@ -11,7 +11,7 @@ only later, when defining a specific event generation.
 ssh lxplus8.cern.ch
 scram p -n pwgtutorial_13_3_0 CMSSW_13_3_0
 cd pwgtutorial_13_3_0/src
-eval `scram runtime -csh`  (in bash: -sh)
+eval `scram runtime -sh`  (in tcsh: -csh)
 ```
 
 Download the "genproductions" package, which is a generic container for CMS MC-generator scripts and configuration cards. 
@@ -53,8 +53,8 @@ Generate 5000 ttbar LH events.
 ```
 mkdir test_ttbar
 cd test_ttbar
-tar -xzvf ../hvq_slc7_amd64_gcc12_CMSSW_13_3_0_my_tutorial_ttbar.tgz
-(if the job failed: tar -xzvf /afs/cern.ch/user/c/covarell/public/tutorial-24-02-19/hvq_slc7_amd64_gcc12_CMSSW_13_3_0_my_tutorial_ttbar.tgz)
+tar -xzvf ../hvq_el8_amd64_gcc12_CMSSW_13_3_0_my_tutorial_ttbar.tgz
+(if the job failed: tar -xzvf /afs/cern.ch/user/c/covarell/public/tutorial-24-02-19/hvq_el8_amd64_gcc12_CMSSW_13_3_0_my_tutorial_ttbar.tgz)
 ./runcmsgrid.sh 5000 12 1
 ```
 
