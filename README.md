@@ -48,7 +48,7 @@ Now run a second, simpler POWHEG job (generates ttbar production at the NLO QCD)
 python3 ./run_pwg_condor.py -i tutorial_ttbar_powheg.input -m hvq -p f -f my_tutorial_ttbar 
 ```
 
-Generate 3000 ttbar LH events.
+Generate 5000 ttbar LH events.
 
 ```
 mkdir test_ttbar
