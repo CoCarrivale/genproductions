@@ -270,7 +270,12 @@ make_gridpack () {
       echo "save options --all" >> mgconfigscript
     
       ./bin/mg5_aMC mgconfigscript
-    
+
+      if [ -e $CARDSDIR/restrict_ckm_no_b_mass.dat ]; then
+          echo "Roberto modification"
+          cp $CARDSDIR/restrict_ckm_no_b_mass.dat ./models/sm
+      fi
+      
       #load extra models if needed
       if [ -e $CARDSDIR/${name}_extramodels.dat ]; then
         echo "Loading extra models specified in $CARDSDIR/${name}_extramodels.dat"
@@ -282,7 +287,7 @@ make_gridpack () {
             echo "Loading extra model $model"
             wget --no-check-certificate https://cms-project-generators.web.cern.ch/cms-project-generators/$model	
             cd models
-            if [[ $model == *".zip"* ]]; then
+	    if [[ $model == *".zip"* ]]; then
               unzip ../$model
             elif [[ $model == *".tgz"* ]]; then
               tar zxvf ../$model

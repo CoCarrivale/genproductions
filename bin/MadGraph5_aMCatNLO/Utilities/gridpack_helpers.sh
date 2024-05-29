@@ -9,9 +9,9 @@ set_run_card_pdf () {
         pdfExtraArgs+="--is5FlavorScheme "
     fi
 
-    if grep -q -e "\$DEFAULT_PDF_SETS" $CARDSDIR/${name}_run_card.dat; then
+    if grep -q -e "325100" $CARDSDIR/${name}_run_card.dat; then
         local central_set=$(python3 ${script_dir}/getMG5_aMC_PDFInputs.py -f "central" -c run3 $pdfExtraArgs)
-        echo "INFO: Using default PDF sets for run3 production"
+        echo "INFO: Using my own PDF sets for run3 production"
 
         sed "s/\$DEFAULT_PDF_SETS/${central_set}/g" $CARDSDIR/${name}_run_card.dat > ./Cards/run_card.dat
         sed -i "s/ *\$DEFAULT_PDF_MEMBERS.*=.*//g" ./Cards/run_card.dat

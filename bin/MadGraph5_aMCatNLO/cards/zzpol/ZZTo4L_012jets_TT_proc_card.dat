@@ -1,0 +1,7 @@
+import model sm-ckm_no_b_mass
+define p = g u u~ d d~ s s~ c c~ b b~
+define j = p
+generate p p > z{T} z{T}, z > e+ e-, z >  mu+ mu- @ 1
+add process p p > z{T} z{T} j, z > e+ e-, z >  mu+ mu- @ 2
+add process p p > z{T} z{T} j j, z > e+ e-, z >  mu+ mu- @ 3
+output ZZTo4L_012jets_TT -nojpeg
