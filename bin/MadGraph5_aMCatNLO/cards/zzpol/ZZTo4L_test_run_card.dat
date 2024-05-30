@@ -29,7 +29,7 @@
 # Warning: Do not generate more than 1M events in a single run       *
 # If you want to run Pythia, avoid more than 50k events in a run.    *
 #*********************************************************************
-  3000 = nevents ! Number of unweighted events requested 
+  1000 = nevents ! Number of unweighted events requested 
   0   = iseed   ! rnd seed (0=assigned automatically=default))
 #*********************************************************************
 # Collider type and energy                                           *
@@ -69,7 +69,7 @@
 #*********************************************************************
 # Matching - Warning! ickkw > 1 is still beta
 #*********************************************************************
- 1 = ickkw            ! 0 no matching, 1 MLM, 2 CKKW matching
+ 0 = ickkw            ! 0 no matching, 1 MLM, 2 CKKW matching
  1 = highestmult      ! for ickkw=2, highest mult group
  1 = ktscheme         ! for ickkw=1, 1 Durham kT, 2 Pythia pTE
  1.0 = alpsfact         ! scale factor for QCD emission vx
@@ -111,8 +111,8 @@
 #*********************************************************************
 # Minimum and maximum pt's (for max, -1 means no cut)                *
 #*********************************************************************
- 15.0  = ptj       ! minimum pt for the jets 
- 15.0  = ptb       ! minimum pt for the b 
+ 10.0  = ptj       ! minimum pt for the jets 
+ 10.0  = ptb       ! minimum pt for the b 
  0.0  = pta       ! minimum pt for the photons 
  20.0  = ptl       ! minimum pt for the charged leptons 
  0.0  = misset    ! minimum missing Et (sum of neutrino's momenta)
@@ -261,7 +261,7 @@
 #*********************************************************************
 # Jet measure cuts                                                   *
 #*********************************************************************
- 15.0   = xqcut   ! minimum kt jet measure between partons
+ 0.0   = xqcut   ! minimum kt jet measure between partons
 #*********************************************************************
 #
 #*********************************************************************
