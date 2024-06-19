@@ -31,19 +31,19 @@ foreach $var (@vars) {
 
     # create the seven subfiles with single histograms
     foreach $line (@log) {
-	if ($line =~ /$(var)/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && !($line =~ /\[/)) {$isnominal = 1;}
+	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && !($line =~ /\[/)) {$isnominal = 1;}
 	if ($isnominal == 1 && $line =~ /END YODA/) {$isnominal = 0;}
-	if ($line =~ /$(var)/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=2.0_\]/) {$ismur2 = 1;}
+	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=2.0_\]/) {$ismur2 = 1;}
 	if ($ismur2 == 1 && $line =~ /END YODA/) {$ismur2 = 0;}
-	if ($line =~ /$(var)/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=0.5_\]/) {$ismur05 = 1;}
+	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=0.5_\]/) {$ismur05 = 1;}
 	if ($ismur05 == 1 && $line =~ /END YODA/) {$ismur05 = 0;}
-	if ($line =~ /$(var)/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUF=2.0_\]/) {$ismuf2 = 1;}
+	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUF=2.0_\]/) {$ismuf2 = 1;}
 	if ($ismuf2 == 1 && $line =~ /END YODA/) {$ismuf2 = 0;}
-	if ($line =~ /$(var)/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=2.0_MUF=2.0_\]/) {$ismurmuf2 = 1;}
+	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=2.0_MUF=2.0_\]/) {$ismurmuf2 = 1;}
 	if ($ismurmuf2 == 1 && $line =~ /END YODA/) {$ismurmuf2 = 0;}
-	if ($line =~ /$(var)/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUF=0.5_\]/) {$ismuf05 = 1;}
+	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUF=0.5_\]/) {$ismuf05 = 1;}
 	if ($ismuf05 == 1 && $line =~ /END YODA/) {$ismuf05 = 0;}
-	if ($line =~ /$(var)/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=0.5_MUF=0.5_\]/) {$ismurmuf05 = 1;}
+	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=0.5_MUF=0.5_\]/) {$ismurmuf05 = 1;}
 	if ($ismurmuf05 == 1 && $line =~ /END YODA/) {$ismurmuf05 = 0;}
 
 	if ($isnominal) {push(@nominal,$line);}
@@ -57,27 +57,28 @@ foreach $var (@vars) {
 
     my $ientry = 0;
     foreach $entry (@nominal) {
-	if ($entry =~ /000/) {
-	    @splitentry = split(/ +/, $entry);
-	    print FH $splitentry[0] . "   " . $splitentry[1] . "   " . $splitentry[2] . "   " .  $splitentry[3] . "   ";
-	    @splitmurmuf05 = split(/ +/, $murmuf05[$ientry]);
-	    print FH $splitmurmuf05[2] . "   ";
-	    @splitmur05 = split(/ +/, $mur05[$ientry]);
-	    print FH $splitmur05[2] . "   ";
-	    @splitmuf05 = split(/ +/, $muf05[$ientry]);
-	    print FH $splitmuf05[2] . "   " . $splitentry[2];
-	    @splitmuf2 = split(/ +/, $muf2[$ientry]);
-	    print FH $splitmuf2[2] . "   ";
-	    @splitmur2 = split(/ +/, $mur2[$ientry]);
-	    print FH $splitmur2[2] . "   ";
-	    @splitmurmuf2 = split(/ +/, $murmuf2[$ientry]);
+	if ($entry =~ /000/ && !($entry =~ /Total/) && !($entry =~ /flow/) && !($entry =~ /ScaledBy/)) {
+	    @splitentry = split('\t', $entry);
+	    print FH $splitentry[0] . "\t" . $splitentry[1] . "\t" . $splitentry[2] . "\t" .  $splitentry[3] . "\t";
+	    @splitmurmuf05 = split('\t', $murmuf05[$ientry]);
+	    print FH $splitmurmuf05[2] . "\t";
+	    @splitmur05 = split('\t', $mur05[$ientry]);
+	    print FH $splitmur05[2] . "\t";
+	    @splitmuf05 = split('\t', $muf05[$ientry]);
+	    print FH $splitmuf05[2] . "\t" . $splitentry[2] . "\t";
+	    @splitmuf2 = split('\t', $muf2[$ientry]);
+	    print FH $splitmuf2[2] . "\t";
+	    @splitmur2 = split('\t', $mur2[$ientry]);
+	    print FH $splitmur2[2] . "\t";
+	    @splitmurmuf2 = split('\t', $murmuf2[$ientry]);
 	    print FH $splitmurmuf2[2] . "\n";
-	$ientry +=1;
 	}
+	$ientry +=1;
     }	
     print FH "\n"
 	
 }
 
+close($of);
 print "Done conversion! Bye bye. \n";
  
