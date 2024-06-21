@@ -3,7 +3,7 @@ fail_exit() { echo "$$@" 1>&2; exit 1; }
 
 echo "Start of job on " `date`
 
-cd $rootfolder
+cd $rootfolder/CMSSW_12_4_8
 
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 

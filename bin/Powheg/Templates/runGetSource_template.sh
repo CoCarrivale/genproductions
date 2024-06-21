@@ -83,7 +83,7 @@ echo 'D/L POWHEG source...'
 
 if [ $svnRev -eq 0 ]; then
  if [ ! -f $${POWHEGSRC} ]; then
-   wget --no-verbose --no-check-certificate http://cms-project-generators.web.cern.ch/cms-project-generators/slc6_amd64_gcc481/powheg/V2.0/src/$${POWHEGSRC} || fail_exit "Failed to get powheg tar ball "
+   cp ../source/$${POWHEGSRC} . || fail_exit "Failed to get powheg tar ball "
  fi
  tar zxf $${POWHEGSRC}
 else
@@ -177,13 +177,14 @@ if [ `grep particle_identif pwhg_analysis-dummy.f` = ""]; then
 fi
 if [[ $$process != "WWJ" && $$process != "ZgamJ" && $$process != "ZZJ" && $$process != "Zgam" ]]; then
   sed -i -e "s#PWHGANAL[ \t]*=[ \t]*#\#PWHGANAL=#g" Makefile
-  sed -i -e "s#ANALYSIS[ \t]*=[ \t]*#\#ANALYSIS=#g" Makefile
+ # sed -i -e "s#ANALYSIS[ \t]*=[ \t]*#\#ANALYSIS=#g" Makefile
   sed -i -e "s#_\#ANALYSIS*#_ANALYSIS=#g" Makefile
   sed -i -e "s#pwhg_bookhist.o# #g" Makefile
   sed -i -e "s#pwhg_bookhist-new.o# #g" Makefile
   sed -i -e "s#pwhg_bookhist-multi.o# #g" Makefile
 fi
 sed -i -e "s#LHAPDF_CONFIG[ \t]*=[ \t]*#\#LHAPDF_CONFIG=#g" Makefile
+sed -i -e "s#FASTJET_CONFIG[ \t]*=[ \t]*#\#FASTJET_CONFIG=#g" Makefile
 sed -i -e "s#DEBUG[ \t]*=[ \t]*#\#DEBUG=#g" Makefile
 sed -i -e "s#FPE[ \t]*=[ \t]*#\#FPE=#g" Makefile
 
@@ -211,6 +212,7 @@ fi
 $patch_5 
 
 echo "LHAPDF_CONFIG=$${LHAPDF_BASE}/bin/lhapdf-config" >> tmpfile
+echo "FASTJET_CONFIG=$${FASTJET_BASE}/bin/fastjet-config" >> tmpfile
 mv Makefile Makefile.interm
 cat tmpfile Makefile.interm > Makefile
 rm -f Makefile.interm tmpfile
