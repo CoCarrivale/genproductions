@@ -197,6 +197,7 @@ cp -p ../gg_H_quark-mass-effects/SLHADefs.h .",
 def runGetSource_patch_5(process) :
   return {
     "Wgamma" : "echo \"PWHGANAL=$BOOK_HISTO pwhg_analysis-dummy.o uti.o \" >> tmpfile",
+    "ggHH_SMEFT": "echo \"PWHGANAL=pwhg_analysis-dummy.o \" >> tmpfile",
      }.get(process,"echo \"PWHGANAL=$BOOK_HISTO pwhg_analysis-dummy.o \" >> tmpfile")
 
 def runGetSource_patch_6(process) :
