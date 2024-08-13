@@ -69,6 +69,7 @@ source_name="${source_name%.*}"
 mkdir -p $workdir
 cd $workdir
 export SCRAM_ARCH=${scram_arch_version}
+source /cvmfs/cms.cern.ch/cmsset_default.sh
 scramv1 project CMSSW ${cmssw_version}
 cd ${cmssw_version}/src
 eval `scramv1 runtime -sh`
@@ -129,6 +130,7 @@ output                  = \$(ClusterId).\$(ProcId).out
 error                   = \$(ClusterId).\$(ProcId).err
 log                     = \$(ClusterId).log
 +JobFlavour             = "tomorrow"
+MY.WantOS    = "el8"
 
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
