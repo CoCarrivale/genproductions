@@ -271,9 +271,9 @@ make_gridpack () {
     
       ./bin/mg5_aMC mgconfigscript
 
-      if [ -e $CARDSDIR/restrict_ckm_no_b_mass.dat ]; then
+      if [ -e $CARDSDIR/restrict_no_b_mass.dat ]; then
           echo "Roberto modification"
-          cp $CARDSDIR/restrict_ckm_no_b_mass.dat ./models/sm
+          cp $CARDSDIR/restrict_no_b_mass.dat ./models/sm
       fi
       
       #load extra models if needed
