@@ -1,5 +1,0 @@
-import model sm-no_b_mass
-define p = g u u~ d d~ s s~ c c~ b b~
-define j = p
-generate p p > z{0} z{T}, z > e+ e-, z >  mu+ mu- 
-output ZZTo4L_test -nojpeg
