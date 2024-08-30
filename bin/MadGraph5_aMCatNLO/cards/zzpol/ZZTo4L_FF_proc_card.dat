@@ -3,5 +3,5 @@ define p = g u u~ d d~ s s~ c c~ b b~
 define j = p
 define l+ = e+ mu+
 define l- = e- mu-
-generate p p > e+ e- mu+ mu- QED=2 QCD=0
+generate p p > e+ e- mu+ mu- QCD=0
 output ZZTo4L_FF -nojpeg
