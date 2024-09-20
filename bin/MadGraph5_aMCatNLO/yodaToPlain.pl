@@ -87,21 +87,22 @@ foreach $var (@vars) {
 	}
     } else {
 	foreach $entry (@nominal) {
-	    if ($entry =~ /000/ && !($entry =~ /Total/) && !($entry =~ /flow/) && !($entry =~ /ScaledBy/)) {   ## only actual histo entries
+	    if ($entry =~ /000/ && !($entry =~ /Total/) && !($entry =~ /flow/) && !($entry =~ /ScaledBy/) && !($entry =~ /Mean/) && !($entry =~ /Area/)) {   ## only actual histo entries
 		@splitentry = split('\t', $entry);
-		print FH $splitentry[0] . "\t" . $splitentry[1] . "\t" . $splitentry[2] . "\t" .  $splitentry[3] . "\t";
+		my $binwidth = $splitentry[1] - $splitentry[0];  print "Bin width = ", $binwidth, "\n";
+		print FH $splitentry[0] . "\t" . $splitentry[1] . "\t" . $splitentry[2]/$binwidth . "\t" .  $splitentry[3]/$binwidth . "\t";
 		@splitmurmuf05 = split('\t', $murmuf05[$ientry]);
-		print FH $splitmurmuf05[2] . "\t";
+		print FH $splitmurmuf05[2]/$binwidth . "\t";
 		@splitmur05 = split('\t', $mur05[$ientry]);
-		print FH $splitmur05[2] . "\t";
+		print FH $splitmur05[2]/$binwidth . "\t";
 		@splitmuf05 = split('\t', $muf05[$ientry]);
-		print FH $splitmuf05[2] . "\t" . $splitentry[2] . "\t";
+		print FH $splitmuf05[2]/$binwidth . "\t" . $splitentry[2]/$binwidth . "\t";
 		@splitmuf2 = split('\t', $muf2[$ientry]);
-		print FH $splitmuf2[2] . "\t";
+		print FH $splitmuf2[2]/$binwidth . "\t";
 		@splitmur2 = split('\t', $mur2[$ientry]);
-		print FH $splitmur2[2] . "\t";
+		print FH $splitmur2[2]/$binwidth . "\t";
 		@splitmurmuf2 = split('\t', $murmuf2[$ientry]);
-		print FH $splitmurmuf2[2] . "\n";
+		print FH $splitmurmuf2[2]/$binwidth . "\n";
 	    }
 	    $ientry +=1;
 	}
