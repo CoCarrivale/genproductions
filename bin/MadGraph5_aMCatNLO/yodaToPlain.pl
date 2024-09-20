@@ -6,7 +6,8 @@ $workdir = ".";
 $inf = $ARGV[0];
 $of  = $ARGV[1];
 
-@vars = ("XSEC","m4l","m3l","mpp","mee","pt4l","ptpp","ptee","ptep","ptmm","yep","ymm","yee","dyee","dypp","dyez","dphiee","dphipp","dree","drpp","cthep","cthmm","cscatt","cosee","cospp");
+#@vars = ("XSEC_","m4l","m3l","mpp","mee","pt4l","ptpp","ptee","ptep","ptmm","yep","ymm","yee","dyee","dypp","dyez","dphiee","dphipp","dree","drpp","cthep","cthmm","cscatt","cosee","cospp");
+@vars = ("totxsec","m4l","m3l","mpp","mee","pt4l","ptpp","ptee","ptep","ptmm","yep","ymm","yee","dyee","dypp","dyez","dphiee","dphipp","dree","drpp","cthep","cthmm","cscatt","cosee","cospp");
 
 # Order in yoda file: ("[MUR=2.0_]","[MUR=0.5_]","[MUF=2.0_]","[MUR=2.0_MUF=2.0_]","[MUF=0.5_]","[MUR=0.5_MUF=0.5_]")
 # Final order should be: ("[MUR=0.5_MUF=0.5_]","[MUR=0.5_]","[MUF=0.5_]","[NOMINAL]","[MUF=2.0_]","[MUR=2.0_]","[MUR=2.0_MUF=2.0_]");
@@ -27,7 +28,7 @@ foreach $var (@vars) {
     my @muf05 = ();  my $ismuf05 = 0;
     my @murmuf05 = ();  my $ismurmuf05 = 0;
 
-    if ($var =~ "XSEC") {print "cross-section: ". $var . "\n" ; print FH "#totxsec\n";}
+    if ($var =~ "XSEC_") {print "cross-section: ". $var . "\n" ; print FH "#totxsec\n";}
     else {print "variable: ". $var . "\n" ; print FH "#" . $var . "\n";}
 	
     # retrieve complete yoda file
@@ -65,7 +66,7 @@ foreach $var (@vars) {
     }
 
     my $ientry = 0;
-    if ($var =~ "XSEC") {
+    if ($var =~ "XSEC_") {
 	foreach $entry (@nominal) {
 	    if ($entry =~ /000/ && !($entry =~ /ScaledBy/)) {   ## only actual cross-section
 		@splitentry = split('\t', $entry);
