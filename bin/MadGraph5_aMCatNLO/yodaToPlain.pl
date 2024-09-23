@@ -29,7 +29,7 @@ foreach $var (@vars) {
     my @murmuf05 = ();  my $ismurmuf05 = 0;
 
     if ($var =~ "XSEC_") {print "cross-section: ". $var . "\n" ; print FH "#totxsec\n";}
-    else {print "variable: ". $var . "\n" ; print FH "#" . $var . "\n";}
+    else {print "variable: ". $var . "\n" ; print FH "# " . $var . "\n";}
 	
     # retrieve complete yoda file
     open(INFILE,$inf) or die "cannot open YODA file";;
@@ -38,21 +38,21 @@ foreach $var (@vars) {
 
     # fill the 7 sub-files with single histograms
     foreach $line (@log) {
-	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && !($line =~ /\[/)) {$isnominal = 1;}
+	if ($line =~ m/\/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && !($line =~ /\[/)) {$isnominal = 1;}
 	if ($isnominal == 1 && $line =~ /END YODA/) {$isnominal = 0;}
 	if ($line =~ /m4l/ && $line =~ /BEGIN YODA/ && $line =~ /RAW/ && !($line =~ /\[/)) {$israwhisto = 1;}
 	if ($israwhisto == 1 && $line =~ /END YODA/) {$israwhisto = 0;}
-	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=2.0_\]/) {$ismur2 = 1;}
+	if ($line =~ m/\/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=2.0_\]/) {$ismur2 = 1;}
 	if ($ismur2 == 1 && $line =~ /END YODA/) {$ismur2 = 0;}
-	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=0.5_\]/) {$ismur05 = 1;}
+	if ($line =~ m/\/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=0.5_\]/) {$ismur05 = 1;}
 	if ($ismur05 == 1 && $line =~ /END YODA/) {$ismur05 = 0;}
-	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUF=2.0_\]/) {$ismuf2 = 1;}
+	if ($line =~ m/\/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUF=2.0_\]/) {$ismuf2 = 1;}
 	if ($ismuf2 == 1 && $line =~ /END YODA/) {$ismuf2 = 0;}
-	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=2.0_MUF=2.0_\]/) {$ismurmuf2 = 1;}
+	if ($line =~ m/\/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=2.0_MUF=2.0_\]/) {$ismurmuf2 = 1;}
 	if ($ismurmuf2 == 1 && $line =~ /END YODA/) {$ismurmuf2 = 0;}
-	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUF=0.5_\]/) {$ismuf05 = 1;}
+	if ($line =~ m/\/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUF=0.5_\]/) {$ismuf05 = 1;}
 	if ($ismuf05 == 1 && $line =~ /END YODA/) {$ismuf05 = 0;}
-	if ($line =~ m/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=0.5_MUF=0.5_\]/) {$ismurmuf05 = 1;}
+	if ($line =~ m/\/(${var})/ && $line =~ /BEGIN YODA/ && !($line =~ /RAW/) && $line =~ /\[MUR=0.5_MUF=0.5_\]/) {$ismurmuf05 = 1;}
 	if ($ismurmuf05 == 1 && $line =~ /END YODA/) {$ismurmuf05 = 0;}
 
 	if ($isnominal) {push(@nominal,$line);}
@@ -91,7 +91,7 @@ foreach $var (@vars) {
 	    if ($entry =~ /000/ && !($entry =~ /Total/) && !($entry =~ /flow/) && !($entry =~ /ScaledBy/) && !($entry =~ /Mean/) && !($entry =~ /Area/)) {   ## only actual histo entries
 		@splitentry = split('\t', $entry);
 		my $binwidth = $splitentry[1] - $splitentry[0];  print "Bin width = ", $binwidth, "\n";
-		print FH $splitentry[0] . "\t" . $splitentry[1] . "\t" . $splitentry[2]/$binwidth . "\t" .  $splitentry[3]/$binwidth . "\t";
+		print FH $ientry+1 . "\t" . $splitentry[0] . "\t" . $splitentry[1] . "\t" . $splitentry[2]/$binwidth . "\t" .  $splitentry[3]/$binwidth . "\t";
 		@splitmurmuf05 = split('\t', $murmuf05[$ientry]);
 		print FH $splitmurmuf05[2]/$binwidth . "\t";
 		@splitmur05 = split('\t', $mur05[$ientry]);
