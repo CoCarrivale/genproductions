@@ -95,7 +95,7 @@
 # Apply pt/E/eta/dr/mij/kt_durham cuts on decay products or not
 # (note that etmiss/ptll/ptheavy/ht/sorted cuts always apply)
 #*************************************************************
-   True = no_parton_cut
+   
    True  = cut_decays    ! Cut decay products 
 #*************************************************************
 # Number of helicities to sum per event (0 = all helicities)
