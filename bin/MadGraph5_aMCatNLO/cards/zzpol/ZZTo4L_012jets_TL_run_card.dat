@@ -95,7 +95,8 @@
 # Apply pt/E/eta/dr/mij/kt_durham cuts on decay products or not
 # (note that etmiss/ptll/ptheavy/ht/sorted cuts always apply)
 #*************************************************************
-   False  = cut_decays    ! Cut decay products 
+   True = no_parton_cuts
+   True  = cut_decays    ! Cut decay products 
 #*************************************************************
 # Number of helicities to sum per event (0 = all helicities)
 # 0 gives more stable result, but longer run time (needed for
@@ -135,7 +136,7 @@
 #*********************************************************************
 # Frame where to evaluate the matrix-element (not the cut!) for polarization   
 #*********************************************************************
-[3,4]  = me_frame     ! list of particles to sum-up to define the rest-frame
+[3,4,5,6]  = me_frame     ! list of particles to sum-up to define the rest-frame
                                ! in which to evaluate the matrix-element
                                ! [1,2] means the partonic center of mass 
 #*********************************************************************
@@ -154,7 +155,7 @@
 #*********************************************************************
  0.4   = drjj    ! min distance between jets 
  0.4   = drbb    ! min distance between b's 
- 0.5   = drll    ! min distance between leptons 
+ 0.0001   = drll    ! min distance between leptons 
  0.4   = draa    ! min distance between gammas 
  0.4   = drbj    ! min distance between b and jet 
  0.4   = draj    ! min distance between gamma and jet 
