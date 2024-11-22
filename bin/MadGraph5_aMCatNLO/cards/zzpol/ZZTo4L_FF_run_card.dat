@@ -155,7 +155,7 @@
 #*********************************************************************
  0.4   = drjj    ! min distance between jets 
  0.4   = drbb    ! min distance between b's 
- 0.0001   = drll    ! min distance between leptons 
+ 0.025   = drll    ! min distance between leptons 
  0.4   = draa    ! min distance between gammas 
  0.4   = drbj    ! min distance between b and jet 
  0.4   = draj    ! min distance between gamma and jet 
