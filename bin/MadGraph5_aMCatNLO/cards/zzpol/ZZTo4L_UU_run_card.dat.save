@@ -142,10 +142,10 @@
 #*********************************************************************
 # Maximum and minimum absolute rapidity (for max, -1 means no cut)   *
 #*********************************************************************
- -1.0  = etaj    ! max rap for the jets 
- -1.0 = etab    ! max rap for the b
- -1.0   = etaa    ! max rap for the photons 
- -1.0   = etal    ! max rap for the charged leptons 
+  0.0 = etaj    ! max rap for the jets 
+  0.0  = etab    ! max rap for the b
+ -1  = etaa    ! max rap for the photons 
+ -1  = etal    ! max rap for the charged leptons 
  0.0  = etajmin ! min rap for the jets
  0.0  = etabmin ! min rap for the b
  0.0  = etaamin ! min rap for the photons
@@ -153,16 +153,16 @@
 #*********************************************************************
 # Minimum and maximum DeltaR distance                                *
 #*********************************************************************
- 0.0   = drjj    ! min distance between jets 
- 0.0   = drbb    ! min distance between b's 
+ 0.4   = drjj    ! min distance between jets 
+ 0.4   = drbb    ! min distance between b's 
  0.025   = drll    ! min distance between leptons 
- 0.0   = draa    ! min distance between gammas 
- 0.0   = drbj    ! min distance between b and jet 
- 0.0   = draj    ! min distance between gamma and jet 
- 0.0   = drjl    ! min distance between jet and lepton 
+ 0.4   = draa    ! min distance between gammas 
+ 0.4   = drbj    ! min distance between b and jet 
+ 0.4   = draj    ! min distance between gamma and jet 
+ 0.4   = drjl    ! min distance between jet and lepton 
  0.0   = drab    ! min distance between gamma and b 
  0.0   = drbl    ! min distance between b and lepton 
- 0.0   = dral    ! min distance between gamma and lepton 
+ 0.4   = dral    ! min distance between gamma and lepton 
  -1.0  = drjjmax ! max distance between jets
  -1.0  = drbbmax ! max distance between b's
  -1.0  = drllmax ! max distance between leptons
@@ -178,23 +178,23 @@
 # WARNING: for four lepton final state mmll cut require to have      *
 #          different lepton masses for each flavor!                  *           
 #*********************************************************************
- 0.0   = mmjj    ! min invariant mass of a jet pair 
- 0.0   = mmbb    ! min invariant mass of a b pair 
+0.0   = mmjj    ! min invariant mass of a jet pair 
+0.0   = mmbb    ! min invariant mass of a b pair 
  0.0   = mmaa    ! min invariant mass of gamma gamma pair
- 0.0   = mmll    ! min invariant mass of l+l- (same flavour) lepton pair
+ 71.0   = mmll    ! min invariant mass of l+l- (same flavour) lepton pair
  -1.0  = mmjjmax ! max invariant mass of a jet pair
  -1.0  = mmbbmax ! max invariant mass of a b pair
  -1.0  = mmaamax ! max invariant mass of gamma gamma pair
- -1.0  = mmllmax ! max invariant mass of l+l- (same flavour) lepton pair
+ 111.0  = mmllmax ! max invariant mass of l+l- (same flavour) lepton pair
 #*********************************************************************
 # Minimum and maximum invariant mass for all letpons                 *
 #*********************************************************************
- 0.0   = mmnl    ! min invariant mass for all letpons (l+- and vl) 
+ 170.0   = mmnl    ! min invariant mass for all letpons (l+- and vl) 
  -1.0  = mmnlmax ! max invariant mass for all letpons (l+- and vl) 
 #*********************************************************************
 # Minimum and maximum pt for 4-momenta sum of leptons                *
 #*********************************************************************
- 0.0  = ptllmin  ! Minimum pt for 4-momenta sum of leptons(l and vl)
+ 0.0   = ptllmin  ! Minimum pt for 4-momenta sum of leptons(l and vl)
  -1.0  = ptllmax  ! Maximum pt for 4-momenta sum of leptons(l and vl)
 #*********************************************************************
 # Inclusive cuts                                                     *
@@ -218,8 +218,8 @@
 #*********************************************************************
 # Control the pt's of leptons sorted by pt                           *
 #*********************************************************************
- 0.0  = ptl1min ! minimum pt for the leading lepton in pt
- 0.0  = ptl2min ! minimum pt for the second lepton in pt
+ 15.0  = ptl1min ! minimum pt for the leading lepton in pt
+ 15.0  = ptl2min ! minimum pt for the second lepton in pt
  0.0   = ptl3min ! minimum pt for the third lepton in pt
  0.0   = ptl4min ! minimum pt for the fourth lepton in pt
  -1.0  = ptl1max ! maximum pt for the leading lepton in pt 
